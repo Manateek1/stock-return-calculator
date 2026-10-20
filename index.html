@@ -1,44 +1,124 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Stock Return Calculator </title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Return Calculator</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f1f5f9;
+            display: flex;
+            justify-content: center;
+            padding: 50px 20px;
+        }
+
+        .calculator {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            width: 100%;
+            max-width: 450px;
+            box-shadow: 0 4px 20px #00000015;
+        }
+
+        input {
+            display: block;
+            width: 100%;
+            box-sizing: border-box;
+            padding: 12px;
+            margin: 8px 0 20px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+
+        button {
+            background: #2563eb;
+            color: white;
+            padding: 14px;
+            border: none;
+            border-radius: 6px;
+            width: 100%;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #1d4ed8;
+        }
+
+        #results {
+            margin-top: 20px;
+            font-weight: bold;
+            line-height: 1.8;
+            white-space: pre-line;
+        }
+    </style>
 </head>
+
 <body>
-    <h1>Stock Return Calculator</h1>
-    <p>Calculate your investment returns!</p>
-    <h2>Enter your investment <details></details></h2>
+    <div class="calculator">
+        <h1>Stock Return Calculator</h1>
+        <p>Calculate your investment returns!</p>
 
-    <label>Purchase Price ($):</label>
-    <input type="number" id="buy">
-    
-    <label>Selling Price ($):</label>
-    <input type="number" id="sell">
+        <h2>Enter Your Investment</h2>
 
-    <label>Number of shares:</label>
-    <input type="number" id="shares">
+        <label for="buy">Purchase Price ($):</label>
+        <input type="number" id="buy" min="0" step="any">
 
-    <button id="calculate">Calculate Returns</button>
+        <label for="sell">Selling Price ($):</label>
+        <input type="number" id="sell" min="0" step="any">
 
-    <!--display the results-->
-    <h2>your results</h2>
-    <p id="results"></p>enter numbers to see your return.</p>
+        <label for="shares">Number of Shares:</label>
+        <input type="number" id="shares" min="0" step="any">
 
-    <!--java script-->
+        <button id="calculate">Calculate Returns</button>
+
+        <h2>Your Results</h2>
+        <p id="results">Enter numbers to see your return.</p>
+    </div>
+
     <script>
-        //calculations
-            document.getElementById("calculate").onclick = function(){
-                let buy = Number(document.getElementById("buy").value);
-                let sell = Number(document.getElementById("sell").value);
-                let shares = Number(document.getElementById("shares").value);
+        document.getElementById("calculate").onclick = function() {
+            // Get the input fields
+            let buyInput = document.getElementById("buy");
+            let sellInput = document.getElementById("sell");
+            let sharesInput = document.getElementById("shares");
 
-                if (buy <= 0 || sell <0 || shares <=0 ||
-                    document.getElementById("buy").value === "" ||
-                    document.getElementById("sell").value === "" ||
-                    document.getElementById("shares").value === "") {
-                    document.getElementById("results").innerText = "Please enter valid numbers.";
-                    return;
+            // Convert inputs into numbers
+            let buy = Number(buyInput.value);
+            let sell = Number(sellInput.value);
+            let shares = Number(sharesInput.value);
+
+            // Make sure the inputs are valid
+            if (
+                buyInput.value.trim() === "" ||
+                sellInput.value.trim() === "" ||
+                sharesInput.value.trim() === "" ||
+                !Number.isFinite(buy) ||
+                !Number.isFinite(sell) ||
+                !Number.isFinite(shares) ||
+                buy <= 0 || sell < 0 || shares <= 0
+            ) {
+                document.getElementById("results").innerText =
+                    "Please enter valid numbers.";
+                return;
             }
+
+            // Calculate investment performance
+            let investment = buy * shares;
+            let finalValue = sell * shares;
+            let profit = finalValue - investment;
+            let percent = (profit / investment) * 100;
+
+            // Display the results
+            document.getElementById("results").innerText =
+                "Initial Investment: $" + investment.toFixed(2) +
+                "\nFinal Value: $" + finalValue.toFixed(2) +
+                "\nProfit/Loss: $" + profit.toFixed(2) +
+                "\nReturn: " + percent.toFixed(2) + "%";
+        };
     </script>
 </body>
 </html>
-

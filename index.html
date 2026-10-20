@@ -6,7 +6,7 @@
 <body>
     <h1>Stock Return Calculator</h1>
     <p>Calculate your investment returns!</p>
-    <h2>Enter your investment</h2>
+    <h2>Enter your investment <details></details></h2>
 
     <label>Purchase Price ($):</label>
     <input type="number" id="buy">
@@ -26,6 +26,18 @@
     <!--java script-->
     <script>
         //calculations
+            document.getElementById("calculate").onclick = function(){
+                let buy = Number(document.getElementById("buy").value);
+                let sell = Number(document.getElementById("sell").value);
+                let shares = Number(document.getElementById("shares").value);
+
+                if (buy <= 0 || sell <0 || shares <=0 ||
+                    document.getElementById("buy").value === "" ||
+                    document.getElementById("sell").value === "" ||
+                    document.getElementById("shares").value === "") {
+                    document.getElementById("results").innerText = "Please enter valid numbers.";
+                    return;
+            }
     </script>
 </body>
 </html>

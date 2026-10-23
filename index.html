@@ -67,46 +67,31 @@
         <p id="results">Enter numbers to see your return.</p>
     </div>
 
-    <script>
-        document.getElementById("calculate").onclick = function() {
-            // Get the input fields
-            let buyInput = document.getElementById("buy");
-            let sellInput = document.getElementById("sell");
-            let sharesInput = document.getElementById("shares");
+   
+<script>
+    document.getElementById("calculate").onclick = function() {
+        let buy = Number(document.getElementById("buy").value);
+        let sell = Number(document.getElementById("sell").value);
+        let shares = Number(document.getElementById("shares").value);
 
-            // Convert inputs into numbers
-            let buy = Number(buyInput.value);
-            let sell = Number(sellInput.value);
-            let shares = Number(sharesInput.value);
+        if (buy <= 0 || sell < 0 || shares <= 0 ||
+            document.getElementById("sell").value === "") {
+            document.getElementById("results").innerText = "Please enter valid numbers.";
+            return;
+        }
 
-            // Make sure the inputs are valid
-            if (
-                buyInput.value.trim() === "" ||
-                sellInput.value.trim() === "" ||
-                sharesInput.value.trim() === "" ||
-                !Number.isFinite(buy) ||
-                !Number.isFinite(sell) ||
-                !Number.isFinite(shares) ||
-                buy <= 0 || sell < 0 || shares <= 0
-            ) {
-                document.getElementById("results").innerText =
-                    "Please enter valid numbers.";
-                return;
-            }
+        let investment = buy * shares;
+        let finalValue = sell * shares;
+        let profit = finalValue - investment;
+        let percent = (profit / investment) * 100;
 
-            // Calculate investment performance
-            let investment = buy * shares;
-            let finalValue = sell * shares;
-            let profit = finalValue - investment;
-            let percent = (profit / investment) * 100;
+        document.getElementById("results").innerText =
+            "Initial Investment: $" + investment.toFixed(2) +
+            "\nFinal Value: $" + finalValue.toFixed(2) +
+            "\nProfit/Loss: $" + profit.toFixed(2) +
+            "\nReturn: " + percent.toFixed(2) + "%";
+    };
+</script>
 
-            // Display the results
-            document.getElementById("results").innerText =
-                "Initial Investment: $" + investment.toFixed(2) +
-                "\nFinal Value: $" + finalValue.toFixed(2) +
-                "\nProfit/Loss: $" + profit.toFixed(2) +
-                "\nReturn: " + percent.toFixed(2) + "%";
-        };
-    </script>
 </body>
 </html>

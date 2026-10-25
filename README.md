@@ -1,38 +1,36 @@
 # Stock Return Calculator
 
-A lightweight browser tool that calculates the dollar and percentage return on a stock investment from the purchase price, selling price, and number of shares.
+This is a calculator in your browser that figures out the amount of money and percent return on an investment using the purchase price, selling price, and number of shares you bought.
 
-[**Open the live calculator →**](https://manateek1.github.io/stock-return-calculator/)
+To use the calculator go to:
+https://manateek1.github.io/stock-return-calculator/
 
-## Use the calculator
+## How to use the calculator
 
-Enter a purchase price, a selling price, and the number of shares, then select **Calculate Returns**. The calculator displays:
+Enter a purchase price, a selling price, and the number of shares, then hit calculate returns. The calculator will show you the:
 
-- Initial investment
-- Final value
-- Profit or loss
-- Percentage return
+    Initial investment
+    Final value
+    Profit or loss
+    Percentage return
 
-For example, buying 10 shares at $25 and selling them at $28 gives a $250 initial investment, a $280 final value, $30 profit, and a 12% return.
 
-## Run it locally
-
-No installation or build step is needed.
+## How to do the run
 
 1. Clone or download this repository.
 2. Open `index.html` in a web browser.
 
-## How it works
+## How does it work?
 
-The page uses HTML, CSS, and vanilla JavaScript. All calculations happen in your browser; the app does not send your inputs to a server.
+The page uses HTML, CSS, and vanilla JavaScript. The calculations are done in your browser. 
 
 The calculator uses:
 
-- **Initial investment** = purchase price × shares
-- **Final value** = selling price × shares
-- **Profit or loss** = final value − initial investment
-- **Return (%)** = profit or loss ÷ initial investment × 100
+Initial investment = purchase price for a share times the number of shares you bought
+Final value = selling price for a share times the number of shares you bought
+Profit or loss = final value minus initial investment
+Return (in percent) = profit or loss divided by initial investment times 100
 
 ## Scope
-
-This is a price-only calculation. It does not include commissions, taxes, dividends, or other costs, and it does not provide investment advice.
+It's price only for now. We're probably gonna add commsions, taxes, dividents and stuff like that later. 
+Not investment advice (pls don't sue)
